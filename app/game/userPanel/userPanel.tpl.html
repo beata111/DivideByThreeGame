@@ -1,0 +1,6 @@
+<div class="game-field">
+    <div class="player-panel">
+        <h2 ng-class="{'active-user': user.active}">{{user.name}}</h2>
+        <user-panel-button ng-repeat="option in list" text="option" disabled="!user.active" click-btn="update(option)"></user-panel-button>
+    </div>
+</div>
