@@ -2,7 +2,7 @@
 
 angular
 .module('gameApp')
-.directive('gameMainView', function($compile, $timeout) {
+.directive('gameMainView', function($timeout) {
   return {
     restrict: 'E',
     templateUrl: 'game/gameMainView/gameMainView.tpl.html',
@@ -10,7 +10,9 @@ angular
       game: '='
     },
     link: function (scope, elem) {
-      scope.game.prevNumber = scope.game.number;
+
+      var div = elem.find('div');
+
       scope.$watch('game.moves', function () {
         scope.game.prevNumber = scope.game.number;
         if (scope.game.moves > 0) {
@@ -19,12 +21,20 @@ angular
         }
       });
 
+      scope.$on('doCpuMove', function (e, move) {
+        var buttonNumber = 4 + move; // opponents buttons are [3][4][5]
+        var button = angular.element('.my-btn')[buttonNumber];
+        button.classList.toggle('activated');
+        $timeout(function () {
+          button.classList.toggle('activated');
+        }, 400);
+      });
+
       function updateNumber () {
-        elem.find('div').removeClass("active");
-        if (timeout) {timeout();}
-        elem.find('div').addClass("active");
-        var timeout = $timeout(function () {
-          elem.find('div').removeClass("active");
+        div.removeClass("active");
+        div.addClass("active");
+        $timeout(function () {
+          div.removeClass("active");
           $timeout(function () {
             checkModulo3();
           }, 200);
@@ -38,43 +48,24 @@ angular
           scope.game.number = scope.game.number / 3;
           updateNumber();
         } else if (scope.game.number === 1) {
+          scope.game.winner = !scope.game.user1.active ? scope.game.user1.name : scope.game.user2.name;
           animateWinning();
-        } else {
-          if (scope.game.user2.active && !scope.game.won) {
-            doCpuMove();
-          }
         }
       }
 
       function animateDivision() {
-        elem.find('div').removeClass("division");
-        elem.find('div').addClass("division");
+        div.removeClass("division");
+        div.addClass("division");
         $timeout(function () {
-          elem.find('div').removeClass("division");
-        }, 1500);
-      }
-
-      function doCpuMove() {
-        var buttonNumber = Math.ceil((Math.random() * 3) + 2);
-        var button = $('.my-btn')[buttonNumber];
-        $timeout(function () {
-          button.classList.toggle('hovered');
-        }, 1000);
-        $timeout(function () {
-          button.click();
-          button.classList.toggle('activated');
-          button.classList.toggle('hovered');
-          $timeout(function () {
-            button.classList.toggle('activated');
-          }, 500);
+          div.removeClass("division");
         }, 1500);
       }
 
       function animateWinning () {
         $timeout(function () {
           scope.game.won = true;
-        }, 500);
+        }, 200);
       }
     }
-  }
+  };
 });

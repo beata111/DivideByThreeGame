@@ -1,3 +1,5 @@
+'use strict';
+
 angular
 .module('gameApp')
 .directive('userPanelButton', function() {

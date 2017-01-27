@@ -8,11 +8,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico"/>
     <!-- endbuild -->
   </head>
@@ -23,12 +23,12 @@
 
 
     <div class="container">
-      <div ng-include="'game/main.html'" ng-controller="MainCtrl as $ctrl"></div>
+      <div ng-include="'game/game.html'" ng-controller="GameCtrl as $ctrl"></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span>Beata Wolska</p>
+        <p><span class="glyphicon glyphicon-heart"></span>Beata Wolska 2017</p>
       </div>
     </div>
 
@@ -42,8 +42,10 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="socket.min.js"></script>
         <script src="game/app.js"></script>
-        <script src="game/main.js"></script>
+        <script src="game/socket.service.js"></script>
+        <script src="game/game.js"></script>
         <script src="game/userPanel/userPanel.directive.js"></script>
         <script src="game/userPanel/userPanelButton/userPanelButton.directive.js"></script>
         <script src="game/gameMainView/gameMainView.directive.js"></script>

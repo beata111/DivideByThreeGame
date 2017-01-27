@@ -1,0 +1,18 @@
+<div ng-if="!$ctrl.game.userReady">
+  <p>enter your name</p>
+  <div>
+    <input type="text" minlength="1" maxlength="9" ng-model="$ctrl.userName" ng-keydown="$ctrl.initUser($event)" autofocus/>
+  </div>
+  <div>
+    <button class="btn my-btn" ng-click="$ctrl.initUser()">start game</button>
+  </div>
+</div>
+<p class="disconnect-text" ng-if="$ctrl.game.userReady && !$ctrl.game.gameReady && !$ctrl.game.cpuDisconnected">please wait for player 2</p>
+<p class="disconnect-text" ng-if="$ctrl.game.userReady && !$ctrl.game.gameReady && $ctrl.game.cpuDisconnected">please reload page</p>
+<div ng-if="$ctrl.game.won">
+  <p class="text-success you-won" ng-if="$ctrl.game.winner === $ctrl.game.user1.name">you win!</p>
+  <p class="game-over-text" ng-if="$ctrl.game.won">game over</p>
+  <div>
+    <button class="btn my-btn" ng-click="$ctrl.startNewGame()">Play again</button>
+  </div>
+</div>

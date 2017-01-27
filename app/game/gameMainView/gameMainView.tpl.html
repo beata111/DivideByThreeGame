@@ -1,6 +1,6 @@
 <div class="game-field">
   <div class="main-game-field">
-    <h2 class="field field-upper" ng-if="!game.won"><span ng-if="game.currentChange >= 0">+</span>{{game.currentChange}}</h2>
+    <h2 class="field field-upper" ng-if="!game.won && game.moves > 0"><span ng-if="game.currentChange >= 0">+</span>{{game.currentChange}}</h2>
     <p class="field">{{game.prevNumber}}</p>
     <p class="field">{{game.number}}</p>
     <h2 class="field field-lower">{{game.prevNumber}} / 3 = {{game.number}} !</h2>

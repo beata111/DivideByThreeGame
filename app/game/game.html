@@ -1,0 +1,21 @@
+<div class="panel game-panel mt40">
+  <h1 class="title">'Make the number divisible by three!'</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <user-panel user="$ctrl.game.user1" click="$ctrl.processMove(data)" current-number="$ctrl.game.currentChange"></user-panel>
+    </div>
+    <div class="col-sm-5">
+      <game-main-view game="$ctrl.game"></game-main-view>
+    </div>
+    <div class="col-sm-3">
+      <div class="glass"></div>
+      <user-panel user="$ctrl.game.user2" click="" current-number="$ctrl.game.currentChange"></user-panel>
+    </div>
+  </div>
+  <div class="start-screen"
+       ng-if="!$ctrl.game.userReady || !$ctrl.game.gameReady || $ctrl.game.won"
+       ng-include="'game/startScreen.tpl.html'">
+  </div>
+</div>
+
+

@@ -1,6 +1,7 @@
 body {
   padding: 0;
-  font-family: pacifico;
+  font-family: pacifico, sans-serif;
+  user-select: none;
 }
 
 .title{
@@ -9,7 +10,7 @@ body {
   text-shadow: 2px 2px 8px #ffffff;
 }
 
-.my-panel{
+.game-panel{
   border-radius: 40px;
   padding: 20px;
   background-color: #ffefb2;
@@ -47,7 +48,7 @@ body {
   font-size: 2em;
 }
 
-.my-btn:hover, .hovered{
+.my-btn:hover{
   background-color: #edf689 ;
   border-color: #edf689;
   outline: none;
@@ -88,21 +89,10 @@ body {
 animation: move-upper 0.5s
 }
 
-@keyframes move-upper {
-  10% {margin-top: 60px;}
-  90% {color: #c02b0b; font-size: 3.5em; margin-top: 40px;}
-  100% {color: black; font-size: 2.5em; margin-top: 50px;}
-}
-
 .division .field-lower {
   opacity: 1;
   animation: 1.5s move-lower;
   visibility: visible;
-}
-
-@keyframes move-lower {
-  from {margin-top: 340px;}
-  to {margin-top: 345px; font-size: 3em;}
 }
 
 .main-game-field p:not(:first-of-type) {
@@ -121,17 +111,17 @@ animation: move-upper 0.5s
   background-color: transparent !important;
 }
 
-@keyframes hide {
-  to {color: white;}
+.glass{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: 100;
 }
 
-@keyframes proud {
-  0% {font-size: 8em;}
-  50% {font-size: 8.5em;}
-  100% {font-size: 8em;}
-}
-
-.winning-screen {
+.start-screen {
   position: absolute;
   top: 0;
   left: 0;
@@ -144,22 +134,52 @@ animation: move-upper 0.5s
   padding-top: 140px;
 }
 
-.winning-screen span{
-  font-size: 15em;
+.start-screen p{
   opacity: 0;
   animation: show 1s forwards;
+  font-size: 3em;
+}
+
+.start-screen input{
+  outline: none;
+  height: 150px;
+  border: none;
+  width: 220px;
+  font-size: 4em;
+}
+
+.game-over-text{
+  font-size: 15em !important;
+}
+
+.you-won{
+  position: absolute;
+  width: 100%;
+}
+
+@keyframes hide {
+  to {color: white;}
+}
+
+@keyframes proud {
+  0% {font-size: 8em;}
+  50% {font-size: 8.5em;}
+  100% {font-size: 8em;}
 }
 
 @keyframes show {
   to {opacity: 1;}
 }
 
-.glass{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.1;
-  z-index: 100;
+@keyframes move-upper {
+  10% {margin-top: 60px;}
+  90% {color: #c02b0b; font-size: 3.5em; margin-top: 40px;}
+  100% {color: black; font-size: 2.5em; margin-top: 50px;}
 }
+
+@keyframes move-lower {
+  from {margin-top: 340px;}
+  to {margin-top: 345px; font-size: 3em;}
+}
+
+
